@@ -3,239 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Rookie - Season 7 Episodes</title>
+    <title>👮‍♂️ ItsTheMovies - The Rookie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Deeper dark blue-gray */
+            color: #e2e8f0; /* Light text color */
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 20px;
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px; /* Some padding around the content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
         }
-
+        /* Center content horizontally and vertically */
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            max-width: 1000px;
+            max-width: 900px; /* Max width for content */
             width: 100%;
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .episode-selector {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-btn {
-            background: linear-gradient(45deg, #3498db, #2980b9);
-            color: white;
-            padding: 15px 30px;
-            font-size: 16px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            min-width: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-        }
-
-        .dropdown-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
-        }
-
-        .dropdown-arrow {
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown.active .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 250px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            border-radius: 10px;
-            z-index: 1;
-            top: 100%;
-            left: 0;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        .dropdown.active .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dropdown-item {
-            color: #2c3e50;
-            padding: 15px 20px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease;
-            border-bottom: 1px solid #ecf0f1;
-        }
-
-        .dropdown-item:hover {
-            background-color: #f8f9fa;
-            color: #3498db;
-        }
-
-        .dropdown-item:last-child {
-            border-bottom: none;
-        }
-
-        .video-container {
-            width: 100%;
-            height: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-        }
-
-        .video-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #7f8c8d;
-            font-size: 18px;
-        }
-
-        .placeholder {
+            background-color: #1e293b; /* Slightly lighter dark background for card */
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Subtle, deep shadow */
+            padding: 2.5rem; /* Increased padding */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            gap: 2rem; /* Space between elements */
+        }
+
+        /* Custom styles for responsive iframes */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem; /* Slightly less rounded for sharper look */
+            background-color: #0c121e; /* Even darker background for the iframe area */
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
-            color: #7f8c8d;
+            border: 0;
         }
 
-        .placeholder-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+        /* Dropdown custom styles for minimalist dark theme */
+        #video-select {
+            background-color: #2d3748; /* Darker dropdown background */
+            color: #e2e8f0; /* Light text */
+            border: none; /* No border for minimalism */
+            padding: 0.75rem 1.25rem; /* More vertical padding */
+            border-radius: 0.375rem; /* rounded-md */
+            appearance: none; /* Remove default arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E"); /* Custom SVG arrow */
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5em; /* Size of the arrow */
+            transition: all 0.2s ease-in-out;
+        }
+        #video-select:hover {
+            background-color: #3e4e60; /* Slightly lighter on hover */
+        }
+        #video-select:focus {
+            outline: none; /* No default outline */
+            box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5); /* Blue focus ring, more subtle */
+            border-color: transparent; /* Ensure no border appears */
+        }
+        #video-select option {
+            background-color: #2d3748; /* Option background */
+            color: #e2e8f0; /* Option text */
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .dropdown-btn {
-                min-width: 200px;
-                padding: 12px 20px;
-            }
-            
-            .video-container {
-                height: 300px;
-            }
+        /* Hide footer for extreme minimalism, or make it very subtle */
+        .footer {
+            opacity: 0.6; /* Make it less prominent */
+            margin-top: 2rem;
+            font-size: 0.8rem;
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
     <div class="container">
-        <h1>The Rookie - Season 7</h1>
-        
-        <div class="episode-selector">
-            <div class="dropdown" id="episodeDropdown">
-                <button class="dropdown-btn" onclick="toggleDropdown()">
-                    <span id="selectedEpisode">Select Episode</span>
-                    <span class="dropdown-arrow">▼</span>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E1', 'https://vidlink.pro/tv/79744/7/1')">S7 E1</a>
-                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E2', 'https://vidlink.pro/tv/79744/7/2')">S7 E2</a>
-                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E3', 'https://vidlink.pro/tv/79744/7/3')">S7 E3</a>
-                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E4', 'https://vidlink.pro/tv/79744/7/4')">S7 E4</a>
-                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E5', 'https://vidlink.pro/tv/79744/7/5')">S7 E5</a>
-                </div>
-            </div>
-        </div>
+        <header class="text-center">
+            <h1 class="text-3xl sm:text-4xl font-semibold text-blue-400 mb-2">
+                The Rookie 👮🏽‍♂️
+            </h1>
+            <p class="text-lg text-gray-400">
+                Select an episode to begin.
+            </p>
+        </header>
 
-        <div class="video-container">
-            <div class="video-frame" id="videoFrame">
-                <div class="placeholder">
-                    <div class="placeholder-icon">🎬</div>
-                    <div>Select an episode to start watching</div>
+        <main class="flex flex-col items-center">
+            <div class="mb-8 w-full">
+                <label for="video-select" class="block text-base font-medium text-gray-300 mb-2 text-center sr-only">
+                    Choose Your Episode:
+                </label>
+                <select id="video-select" class="block w-full text-lg cursor-pointer">
+                    </select>
+            </div>
+
+            <div class="w-full">
+                <h2 id="current-video-title" class="text-xl font-medium mb-3 text-blue-300 text-center"></h2>
+                <div class="video-container">
+                    <iframe id="video-iframe" src="" allowfullscreen></iframe>
                 </div>
             </div>
-        </div>
+        </main>
+
+        <footer class="text-center footer">
+            <p>2025</p>
+        </footer>
     </div>
 
     <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('episodeDropdown');
-            dropdown.classList.toggle('active');
+        // Array of video links
+        const videoLinks = [
+            "https://vidlink.pro/tv/79744/7/1",
+            "https://vidlink.pro/tv/79744/7/2",
+            "https://vidlink.pro/tv/79744/7/3",
+            "https://vidlink.pro/tv/79744/7/4",
+            "https://vidlink.pro/tv/79744/7/5",
+            "https://vidlink.pro/tv/79744/7/6",
+            "https://vidlink.pro/tv/79744/7/7",
+            "https://vidlink.pro/tv/79744/7/8",
+            "https://vidlink.pro/tv/79744/7/9",
+            "https://vidlink.pro/tv/79744/7/10",
+            "https://vidlink.pro/tv/79744/7/11",
+            "https://vidlink.pro/tv/79744/7/12",
+            "https://vidlink.pro/tv/79744/7/13",
+            "https://vidlink.pro/tv/79744/7/14",
+            "https://vidlink.pro/tv/79744/7/15",
+            "https://vidlink.pro/tv/79744/7/16",
+            "https://vidlink.pro/tv/79744/7/17",
+            "https://vidlink.pro/tv/79744/7/18"
+        ];
+
+        // Get references to HTML elements
+        const videoSelect = document.getElementById('video-select');
+        const videoIframe = document.getElementById('video-iframe');
+        const currentVideoTitle = document.getElementById('current-video-title');
+
+        /**
+         * Populates the dropdown with video options.
+         */
+        function populateDropdown() {
+            videoLinks.forEach((link, index) => {
+                const option = document.createElement('option');
+                option.textContent = `S7 E${index + 1}`;
+                option.value = link;
+                videoSelect.appendChild(option);
+            });
         }
 
-        function selectEpisode(episodeName, url) {
-            document.getElementById('selectedEpisode').textContent = episodeName;
-            document.getElementById('episodeDropdown').classList.remove('active');
-            
-            // Create iframe element
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.className = 'video-frame';
-            iframe.allow = 'autoplay; encrypted-media; fullscreen';
-            iframe.allowFullscreen = true;
-            
-            // Replace the placeholder with the iframe
-            const videoFrame = document.getElementById('videoFrame');
-            videoFrame.innerHTML = '';
-            videoFrame.appendChild(iframe);
+        /**
+         * Updates the iframe source and title based on the selected video.
+         * @param {string} url - The URL of the video to load.
+         * @param {string} title - The title to display for the video.
+         */
+        function loadVideo(url, title) {
+            videoIframe.src = url;
+            currentVideoTitle.textContent = title;
         }
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('episodeDropdown');
-            if (!dropdown.contains(event.target)) {
-                dropdown.classList.remove('active');
+        // Event listener for dropdown changes
+        videoSelect.addEventListener('change', (event) => {
+            const selectedUrl = event.target.value;
+            const selectedText = event.target.options[event.target.selectedIndex].textContent;
+            loadVideo(selectedUrl, selectedText);
+        });
+
+        // Initialize the page when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            populateDropdown();
+            // Load the first video by default
+            if (videoLinks.length > 0) {
+                loadVideo(videoLinks[0], `S7 E1`);
             }
         });
     </script>
