@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rookie - Season 7 Episodes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .episode-selector {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            min-width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .dropdown-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .dropdown-arrow {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            color: #2c3e50;
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            color: #3498db;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+
+        .placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            color: #7f8c8d;
+        }
+
+        .placeholder-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .dropdown-btn {
+                min-width: 200px;
+                padding: 12px 20px;
+            }
+            
+            .video-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Rookie - Season 7</h1>
+        
+        <div class="episode-selector">
+            <div class="dropdown" id="episodeDropdown">
+                <button class="dropdown-btn" onclick="toggleDropdown()">
+                    <span id="selectedEpisode">Select Episode</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E1', 'https://vidlink.pro/tv/79744/7/1')">S7 E1</a>
+                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E2', 'https://vidlink.pro/tv/79744/7/2')">S7 E2</a>
+                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E3', 'https://vidlink.pro/tv/79744/7/3')">S7 E3</a>
+                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E4', 'https://vidlink.pro/tv/79744/7/4')">S7 E4</a>
+                    <a href="#" class="dropdown-item" onclick="selectEpisode('S7 E5', 'https://vidlink.pro/tv/79744/7/5')">S7 E5</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <div class="video-frame" id="videoFrame">
+                <div class="placeholder">
+                    <div class="placeholder-icon">🎬</div>
+                    <div>Select an episode to start watching</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('episodeDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function selectEpisode(episodeName, url) {
+            document.getElementById('selectedEpisode').textContent = episodeName;
+            document.getElementById('episodeDropdown').classList.remove('active');
+            
+            // Create iframe element
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.className = 'video-frame';
+            iframe.allow = 'autoplay; encrypted-media; fullscreen';
+            iframe.allowFullscreen = true;
+            
+            // Replace the placeholder with the iframe
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.innerHTML = '';
+            videoFrame.appendChild(iframe);
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('episodeDropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
